@@ -39,6 +39,9 @@ namespace EntityDapperCore
                 options.UseSqlServer(connectionString);
             });
 
+            services.AddScoped<IDbContext>(provider => provider.GetService<DataContext>());
+            services.AddScoped<ISqlContext>(provider => provider.GetService<DataContext>());
+
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICategoryService, CategoryService>();
         }
