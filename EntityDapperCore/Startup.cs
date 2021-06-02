@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+using EntityDapperCore.BusinessLayer.Services.EntityFrameworkCore;
 using EntityDapperCore.DataAccessLayer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -20,18 +22,24 @@ namespace EntityDapperCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+            });
+
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "EntityDapperCore", Version = "v1" });
             });
 
-            string connectionString = Configuration.GetConnectionString("SqlConnection");
+            var connectionString = Configuration.GetConnectionString("SqlConnection");
 
             services.AddDbContext<DataContext>(options =>
             {
                 options.UseSqlServer(connectionString);
             });
+
+            services.AddScoped<IProductService, ProductService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

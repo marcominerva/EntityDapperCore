@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EntityDapperCore.DataAccessLayer\EntityDapperCore.DataAccessLayer.csproj" />
+    <ProjectReference Include="..\EntityDapperCore.Shared\EntityDapperCore.Shared.csproj" />
   </ItemGroup>
 
 </Project>
