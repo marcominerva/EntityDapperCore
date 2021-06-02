@@ -1,5 +1,5 @@
 using System.Text.Json.Serialization;
-using EntityDapperCore.BusinessLayer.Services.EntityFrameworkCore;
+using EntityDapperCore.BusinessLayer.Services;
 using EntityDapperCore.DataAccessLayer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

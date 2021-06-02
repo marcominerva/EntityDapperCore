@@ -6,7 +6,7 @@ using EntityDapperCore.Shared.Models;
 using Microsoft.EntityFrameworkCore;
 using Entities = EntityDapperCore.DataAccessLayer.Entities;
 
-namespace EntityDapperCore.BusinessLayer.Services.EntityFrameworkCore
+namespace EntityDapperCore.BusinessLayer.Services
 {
     public class ProductService : IProductService
     {

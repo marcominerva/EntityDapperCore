@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Net.Mime;
 using System.Threading.Tasks;
-using EntityDapperCore.BusinessLayer.Services.EntityFrameworkCore;
+using EntityDapperCore.BusinessLayer.Services;
 using EntityDapperCore.Shared.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,11 +11,11 @@ namespace EntityDapperCore.Controllers
     [ApiController]
     [Route("api/[controller]")]
     [Produces(MediaTypeNames.Application.Json)]
-    public class EntityFrameworkCoreProductsController : ControllerBase
+    public class ProductsController : ControllerBase
     {
         private readonly IProductService productService;
 
-        public EntityFrameworkCoreProductsController(IProductService productService)
+        public ProductsController(IProductService productService)
         {
             this.productService = productService;
         }
