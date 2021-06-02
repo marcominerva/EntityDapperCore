@@ -43,5 +43,23 @@ namespace EntityDapperCore.Controllers
 
             return Ok(product);
         }
+
+        [HttpPost("{id:int}/discontinue")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesDefaultResponseType]
+        public async Task<IActionResult> Discontinue(int id)
+        {
+            await productService.DiscontinueAsync(id);
+            return NoContent();
+        }
+
+        [HttpGet("{id:int}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesDefaultResponseType]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await productService.DeleteAsync(id);
+            return NoContent();
+        }
     }
 }

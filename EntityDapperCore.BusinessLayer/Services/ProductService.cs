@@ -27,7 +27,7 @@ namespace EntityDapperCore.BusinessLayer.Services
 
         public async Task<Product> GetAsync(int id)
         {
-            var dbProduct = await dataContext.Products.FindAsync(id);
+            var dbProduct = await dataContext.Products.FirstOrDefaultAsync(p => p.Id == id);
             if (dbProduct == null)
             {
                 return null;
@@ -35,6 +35,26 @@ namespace EntityDapperCore.BusinessLayer.Services
 
             var product = CreateDto(dbProduct);
             return product;
+        }
+
+        public async Task DiscontinueAsync(int id)
+        {
+            var dbProduct = await dataContext.Products.FirstOrDefaultAsync(p => p.Id == id);
+            if (dbProduct != null)
+            {
+                dbProduct.Discontinued = true;
+                await dataContext.SaveChangesAsync();
+            }
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            var dbProduct = await dataContext.Products.FirstOrDefaultAsync(p => p.Id == id);
+            if (dbProduct != null)
+            {
+                dataContext.Products.Remove(dbProduct);
+                await dataContext.SaveChangesAsync();
+            }
         }
 
         private static Product CreateDto(Entities.Product product)
