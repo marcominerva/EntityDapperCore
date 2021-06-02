@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EntityDapperCore.BusinessLayer.Extensions;
 using EntityDapperCore.DataAccessLayer;
 using EntityDapperCore.Shared.Models;
 using Microsoft.EntityFrameworkCore;
-using Entities = EntityDapperCore.DataAccessLayer.Entities;
 
 namespace EntityDapperCore.BusinessLayer.Services
 {
@@ -20,7 +20,7 @@ namespace EntityDapperCore.BusinessLayer.Services
         public async Task<IEnumerable<Product>> GetAsync()
         {
             var query = dataContext.Products.OrderBy(p => p.Name);
-            var products = await query.Select(p => CreateDto(p)).ToListAsync();
+            var products = await query.Select(p => p.ToDto()).ToListAsync();
 
             return products;
         }
@@ -33,7 +33,7 @@ namespace EntityDapperCore.BusinessLayer.Services
                 return null;
             }
 
-            var product = CreateDto(dbProduct);
+            var product = dbProduct.ToDto();
             return product;
         }
 
@@ -56,18 +56,5 @@ namespace EntityDapperCore.BusinessLayer.Services
                 await dataContext.SaveChangesAsync();
             }
         }
-
-        private static Product CreateDto(Entities.Product product)
-            => new()
-            {
-                Id = product.Id,
-                Name = product.Name,
-                UnitsInStock = product.UnitsInStock.GetValueOrDefault(),
-                UnitPrice = product.UnitPrice.GetValueOrDefault(),
-                CategoryId = product.CategoryId,
-                Discontinued = product.Discontinued,
-                QuantityPerUnit = product.QuantityPerUnit,
-                SupplierId = product.SupplierId
-            };
     }
 }

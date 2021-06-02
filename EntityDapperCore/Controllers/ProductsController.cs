@@ -53,7 +53,7 @@ namespace EntityDapperCore.Controllers
             return NoContent();
         }
 
-        [HttpGet("{id:int}")]
+        [HttpDelete("{id:int}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesDefaultResponseType]
         public async Task<IActionResult> Delete(int id)
