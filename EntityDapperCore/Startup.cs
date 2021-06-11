@@ -32,12 +32,13 @@ namespace EntityDapperCore
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "EntityDapperCore", Version = "v1" });
             });
 
-            var connectionString = Configuration.GetConnectionString("SqlConnection");
-
             services.AddDbContext<DataContext>(options =>
             {
-                options.UseSqlServer(connectionString);
+                options.UseSqlServer(Configuration.GetConnectionString("SqlConnection"));
             });
+
+            services.AddScoped<IDbContext>(provider => provider.GetService<DataContext>());
+            services.AddScoped<ISqlContext>(provider => provider.GetService<DataContext>());
 
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICategoryService, CategoryService>();
