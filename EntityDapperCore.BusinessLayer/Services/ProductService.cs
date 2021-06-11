@@ -42,9 +42,9 @@ namespace EntityDapperCore.BusinessLayer.Services
 
         public async Task DiscontinueAsync(int id)
         {
-            await sqlContext.ExecuteAsync("UPDATE Products SET Discontinued=1 WHERE ProductId=@id", new { id });
+            await sqlContext.ExecuteAsync("UPDATE Products SET Discontinued = 1 WHERE ProductId = @id", new { id });
 
-            //var dbProduct = await dataContext.GetData<Entities.Product>().FirstOrDefaultAsync(p => p.Id == id);
+            //var dbProduct = await dataContext.GetData<Entities.Product>(true).FirstOrDefaultAsync(p => p.Id == id);
             //if (dbProduct != null)
             //{
             //    dbProduct.Discontinued = true;
@@ -54,9 +54,9 @@ namespace EntityDapperCore.BusinessLayer.Services
 
         public async Task DeleteAsync(int id)
         {
-            await sqlContext.ExecuteAsync("DELETE Products WHERE ProductId=@id", new { id });
+            await sqlContext.ExecuteAsync("DELETE FROM Products WHERE ProductId = @id", new { id });
 
-            //var dbProduct = await dataContext.GetData<Entities.Product>().FirstOrDefaultAsync(p => p.Id == id);
+            //var dbProduct = await dataContext.GetData<Entities.Product>(true).FirstOrDefaultAsync(p => p.Id == id);
             //if (dbProduct != null)
             //{
             //    dataContext.Products.Remove(dbProduct);
