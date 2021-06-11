@@ -5,7 +5,6 @@ using EntityDapperCore.BusinessLayer.Extensions;
 using EntityDapperCore.DataAccessLayer;
 using EntityDapperCore.Shared.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Entities = EntityDapperCore.DataAccessLayer.Entities;
 
 namespace EntityDapperCore.BusinessLayer.Services
@@ -15,7 +14,7 @@ namespace EntityDapperCore.BusinessLayer.Services
         private readonly IDbContext dataContext;
         private readonly ISqlContext sqlContext;
 
-        public ProductService(IDbContext dataContext, ISqlContext sqlContext, IConfiguration configuration)
+        public ProductService(IDbContext dataContext, ISqlContext sqlContext)
         {
             this.dataContext = dataContext;
             this.sqlContext = sqlContext;

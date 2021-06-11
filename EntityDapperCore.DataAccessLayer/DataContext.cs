@@ -55,8 +55,8 @@ namespace EntityDapperCore.DataAccessLayer
             => SaveChangesAsync();
 
         public Task<IEnumerable<T>> GetDataAsync<T>(string sql, object param = null, IDbTransaction transaction = null, CommandType? commandType = null)
-                where T : class
-                => Connection.QueryAsync<T>(sql, param, transaction, commandType: commandType);
+            where T : class
+            => Connection.QueryAsync<T>(sql, param, transaction, commandType: commandType);
 
         public Task<IEnumerable<TReturn>> GetDataAsync<TFirst, TSecond, TReturn>(string sql, Func<TFirst, TSecond, TReturn> map, object param = null, IDbTransaction transaction = null, CommandType? commandType = null, string splitOn = "Id")
             where TFirst : class

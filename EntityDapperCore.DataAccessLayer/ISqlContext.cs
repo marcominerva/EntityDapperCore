@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace EntityDapperCore.DataAccessLayer
 {
-    public interface ISqlContext : IAsyncDisposable
+    public interface ISqlContext
     {
         Task<IEnumerable<T>> GetDataAsync<T>(string sql, object param = null, IDbTransaction transaction = null, CommandType? commandType = null)
             where T : class;
