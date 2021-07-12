@@ -4,7 +4,6 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
-using EntityDapperCore.DataAccessLayer.Entities;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,12 +11,6 @@ namespace EntityDapperCore.DataAccessLayer
 {
     public class DataContext : DbContext, IDbContext, ISqlContext
     {
-        public DbSet<Product> Products { get; set; }
-
-        public DbSet<Category> Categories { get; set; }
-
-        public DbSet<Supplier> Suppliers { get; set; }
-
         private IDbConnection connection;
         private IDbConnection Connection
         {
