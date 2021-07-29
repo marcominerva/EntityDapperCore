@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EntityDapperCore.DataAccessLayer.Entities
 {
     public class Supplier
     {
-        [Column("SupplierId")]
         public int Id { get; set; }
 
         public string CompanyName { get; set; }
