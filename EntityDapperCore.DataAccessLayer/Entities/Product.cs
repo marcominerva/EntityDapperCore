@@ -1,13 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace EntityDapperCore.DataAccessLayer.Entities
+﻿namespace EntityDapperCore.DataAccessLayer.Entities
 {
     public class Product
     {
-        [Column("ProductId")]
         public int Id { get; set; }
 
-        [Column("ProductName")]
         public string Name { get; set; }
 
         public short? UnitsInStock { get; set; }
@@ -22,10 +18,8 @@ namespace EntityDapperCore.DataAccessLayer.Entities
 
         public bool Discontinued { get; set; }
 
-        [ForeignKey(nameof(CategoryId))]
         public virtual Category Category { get; set; }
 
-        [ForeignKey(nameof(SupplierId))]
         public virtual Supplier Supplier { get; set; }
     }
 }
